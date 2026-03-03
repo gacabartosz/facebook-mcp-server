@@ -1,6 +1,6 @@
 # Facebook MCP Server
 
-This project is a **MCP server** for automating and managing interactions on a Facebook Page using the Facebook Graph API. It exposes tools to create posts, moderate comments, fetch post insights, and filter negative feedback — ready to plug into Claude, or other LLM-based agents.
+MCP server for managing a Facebook Page via the Graph API. Exposes tools for creating posts, moderating comments, fetching post insights, and filtering negative feedback — ready for Claude Desktop, Claude Code, or any MCP-compatible client.
 
 [![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/HagaiHen/facebook-mcp-server)](https://archestra.ai/mcp-catalog/hagaihen__facebook-mcp-server)
 <a href="https://glama.ai/mcp/servers/@HagaiHen/facebook-mcp-server">
@@ -9,123 +9,201 @@ This project is a **MCP server** for automating and managing interactions on a F
 
 ---
 
-## 🤖 What Is This?
+## What Is This?
 
-This MCP provides a suite of AI-callable tools that connect directly to a Facebook Page, abstracting common API operations as LLM-friendly functions.
+An MCP server providing AI-callable tools that connect directly to a Facebook Page, abstracting Graph API operations as LLM-friendly functions.
 
-### ✅ Benefits
+### Benefits
 
-- Empowers **social media managers** to automate moderation and analytics.
-- Seamlessly integrates with **Claude Desktop or any Agent client**.
-- Enables fine-grained control over Facebook content from natural language.
-
----
-
-## 📦 Features
-
-| Tool                             | Description                                                         |
-|----------------------------------|---------------------------------------------------------------------|
-| `post_to_facebook`               | Create a new Facebook post with a message.                          |
-| `reply_to_comment`               | Reply to a specific comment on a post.                              |
-| `get_page_posts`                 | Retrieve recent posts from the Page.                                |
-| `get_post_comments`              | Fetch comments on a given post.                                     |
-| `delete_post`                    | Delete a specific post by ID.                                       |
-| `delete_comment`                 | Delete a specific comment by ID.                                    |
-| `hide_comment`                   | Hide a comment from public view.                         |
-| `unhide_comment`                 | Unhide a previously hidden comment.                      |
-| `delete_comment_from_post`       | Alias for deleting a comment from a specific post.                  |
-| `filter_negative_comments`       | Filter out comments with negative sentiment keywords.               |
-| `get_number_of_comments`         | Count the number of comments on a post.                             |
-| `get_number_of_likes`            | Count the number of likes on a post.                                |
-| `get_post_impressions`           | Get total impressions on a post.                                    |
-| `get_post_impressions_unique`    | Get number of unique users who saw the post.                        |
-| `get_post_impressions_paid`      | Get number of paid impressions on the post.                         |
-| `get_post_impressions_organic`   | Get number of organic impressions on the post.                      |
-| `get_post_engaged_users`         | Get number of users who engaged with the post.                      |
-| `get_post_clicks`                | Get number of clicks on the post.                                   |
-| `get_post_reactions_like_total`  | Get total number of 'Like' reactions.                               |
-| `get_post_top_commenters`        | Get the top commenters on a post.                                   |
-| `post_image_to_facebook`         | Post an image with a caption to the Facebook page.                  |
-| `send_dm_to_user`                | Send a direct message to a user.                                    |
-| `update_post`                    | Updates an existing post's message.                                 |
-| `schedule_post`                  | Schedule a post for future publication.                     |
-| `get_page_fan_count`             | Retrieve the total number of Page fans.                     |
-| `get_post_share_count`           | Get the number of shares on a post.                         |
-| `get_post_reactions_breakdown`   | Get all reaction counts for a post in one call.              |
-| `bulk_delete_comments`           | Delete multiple comments by ID.                              |
-| `bulk_hide_comments`             | Hide multiple comments by ID.                    |
+- Automates **social media moderation and analytics** for Page managers
+- Integrates with **Claude Desktop, Claude Code CLI, or any MCP client**
+- Fine-grained control over Facebook content via natural language
 
 ---
 
-## 🚀 Setup & Installation
+## Features (33 tools)
+
+| Tool | Description |
+|------|-------------|
+| `post_to_facebook` | Create a new text post on the Page |
+| `reply_to_comment` | Reply to a specific comment |
+| `get_page_posts` | Fetch recent posts from the Page |
+| `get_post_comments` | Get all comments for a post |
+| `delete_post` | Delete a post by ID |
+| `delete_comment` | Delete a comment by ID |
+| `hide_comment` | Hide a comment from public view |
+| `unhide_comment` | Unhide a previously hidden comment |
+| `filter_negative_comments` | Filter comments by negative sentiment keywords |
+| `get_number_of_comments` | Count comments on a post |
+| `get_number_of_likes` | Count likes on a post |
+| `get_post_insights` | Get all insights metrics for a post |
+| `get_post_impressions` | Total impressions |
+| `get_post_impressions_unique` | Unique impressions (reach) |
+| `get_post_impressions_paid` | Paid impressions |
+| `get_post_impressions_organic` | Organic impressions |
+| `get_post_engaged_users` | Unique engaged users |
+| `get_post_clicks` | Total post clicks |
+| `get_post_reactions_like_total` | Like reaction count |
+| `get_post_reactions_love_total` | Love reaction count |
+| `get_post_reactions_wow_total` | Wow reaction count |
+| `get_post_reactions_haha_total` | Haha reaction count |
+| `get_post_reactions_sorry_total` | Sorry/Sad reaction count |
+| `get_post_reactions_anger_total` | Angry reaction count |
+| `get_post_reactions_breakdown` | All reaction counts in one call |
+| `get_post_top_commenters` | Top commenters sorted by count |
+| `post_image_to_facebook` | Post an image with caption |
+| `send_dm_to_user` | Send a DM via Messenger |
+| `update_post` | Update an existing post's text |
+| `schedule_post` | Schedule a post for future publication |
+| `get_page_fan_count` | Total Page fan/follower count |
+| `get_post_share_count` | Number of shares for a post |
+| `bulk_delete_comments` | Delete multiple comments by ID |
+| `bulk_hide_comments` | Hide multiple comments by ID |
+
+---
+
+## Setup & Installation
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-org/facebook-mcp-server.git
+git clone https://github.com/gacabartosz/facebook-mcp-server.git
 cd facebook-mcp-server
 ```
 
-### 2. 🛠️ Installation
+### 2. Install Dependencies
 
-Install dependencies using uv, a fast Python package manager:
-If uv is not already installed, run:
-```bash
-curl -Ls https://astral.sh/uv/install.sh | bash
-```
+Using [uv](https://docs.astral.sh/uv/) (recommended):
 
-Once uv is installed, install the project dependencies:
 ```bash
 uv pip install -r requirements.txt
 ```
 
-### 3. Set Up Environment
-
-Create a .env file in the root directory and add your Facebook Page credentials. 
-You can obtain these from  https://developers.facebook.com/tools/explorer
+Or with pip:
 
 ```bash
-FACEBOOK_ACCESS_TOKEN=your_facebook_page_access_token
+pip install -r requirements.txt
+```
+
+### 3. Configure Environment
+
+Copy the example env file and add your Facebook credentials:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your values:
+
+```
+FACEBOOK_ACCESS_TOKEN=your_page_access_token
 FACEBOOK_PAGE_ID=your_page_id
 ```
 
-## 🧩 Using with Claude Desktop
-To set up the FacebookMCP in Clade:
+Get these from [Facebook Graph API Explorer](https://developers.facebook.com/tools/explorer).
 
-1.	Open Clade.
-2.	Go to Settings → Developer → Edit Config.
-3.	In the config file that opens, add the following entry:
+---
+
+## Usage
+
+### Claude Desktop
+
+Go to **Settings > Developer > Edit Config** and add:
+
+```json
+{
+  "mcpServers": {
+    "facebook-pages": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with", "mcp[cli]",
+        "--with", "requests",
+        "--with", "python-dotenv",
+        "mcp", "run",
+        "/absolute/path/to/facebook-mcp-server/server.py"
+      ],
+      "env": {
+        "FACEBOOK_ACCESS_TOKEN": "your_token",
+        "FACEBOOK_PAGE_ID": "your_page_id"
+      }
+    }
+  }
+}
+```
+
+### Claude Code CLI
+
+Add to your project's `.claude/settings.json` or user settings:
+
+```json
+{
+  "mcpServers": {
+    "facebook-pages": {
+      "command": "uv",
+      "args": [
+        "run",
+        "/path/to/facebook-mcp-server/server.py"
+      ],
+      "env": {
+        "FACEBOOK_ACCESS_TOKEN": "your_token",
+        "FACEBOOK_PAGE_ID": "your_page_id"
+      }
+    }
+  }
+}
+```
+
+### Direct Execution
 
 ```bash
-"FacebookMCP": {
-  "command": "uv",
-  "args": [
-    "run",
-    "--with",
-    "mcp[cli]",
-    "--with",
-    "requests",
-    "mcp",
-    "run",
-    "/path/to/facebook-mcp-server/server.py"
-  ]
-}
+cd facebook-mcp-server
+python server.py
+```
+
+The server communicates over stdio using the MCP protocol.
+
+---
+
+## Architecture
+
+```
+server.py          MCP tool definitions (FastMCP decorators)
+  ├── manager.py   Business logic layer
+  │   └── facebook_api.py   Facebook Graph API HTTP client
+  └── config.py    Environment config & validation
+```
+
+- **Auth**: Uses `Authorization: Bearer` header (not URL params)
+- **Error handling**: HTTP errors raise `FacebookAPIError` with status code and message
+- **Startup validation**: Missing env vars fail fast with clear error message
+- **Graph API**: v22.0
+
+---
+
+## Required Facebook Permissions
+
+- `pages_manage_posts` — Create, update, delete posts
+- `pages_read_engagement` — Read comments, likes, shares
+- `pages_manage_engagement` — Reply to/delete/hide comments
+- `pages_messaging` — Send DMs via Messenger
+- `pages_read_user_content` — Read user comments
+- `read_insights` — Access post insights/metrics
+
+---
+
+## Contributing
+
+Contributions welcome! Fork the repo and submit a pull request.
+
+```bash
+git checkout -b feature/YourFeature
+git commit -m 'feat: add new feature'
+git push origin feature/YourFeature
 ```
 
 ---
 
-## ✅ You’re Ready to Go!
+## License
 
-That’s it — your Facebook MCP server is now fully configured and ready to power Claude Desktop. You can now post, moderate, and measure engagement all through natural language prompts!
-
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!  
-Feel free to fork the repo and submit a pull request.
-
-- Create a branch: `git checkout -b feature/YourFeature`
-- Commit your changes: `git commit -m 'feat: add new feature'`
-- Push to the branch: `git push origin feature/YourFeature`
-- Open a pull request 🎉
+MIT License. Originally by [Hagai Hen](https://github.com/HagaiHen).
