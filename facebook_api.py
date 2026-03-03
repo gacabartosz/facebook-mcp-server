@@ -14,11 +14,19 @@ class FacebookAPIError(Exception):
 
 
 class FacebookAPI:
+    @staticmethod
+    def _serialize_params(params: dict[str, Any]) -> dict[str, Any]:
+        """Convert Python bools to lowercase strings for Graph API compatibility."""
+        return {
+            k: str(v).lower() if isinstance(v, bool) else v
+            for k, v in params.items()
+        }
+
     def _request(self, method: str, endpoint: str, params: dict[str, Any] | None = None, json: dict[str, Any] | None = None) -> dict[str, Any]:
         """Generic Graph API request with proper auth and error handling."""
         url = f"{GRAPH_API_BASE_URL}/{endpoint}"
         headers = {"Authorization": f"Bearer {PAGE_ACCESS_TOKEN}"}
-        params = params or {}
+        params = self._serialize_params(params) if params else {}
 
         logger.debug("%s %s params=%s", method, endpoint, list(params.keys()))
         try:

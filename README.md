@@ -21,7 +21,7 @@ An MCP server providing AI-callable tools that connect directly to a Facebook Pa
 
 ---
 
-## Features (33 tools)
+## Features (34 tools)
 
 | Tool | Description |
 |------|-------------|
@@ -134,7 +134,7 @@ Go to **Settings > Developer > Edit Config** and add:
 
 ### Claude Code CLI
 
-Add to your project's `.claude/settings.json` or user settings:
+Add to your `.claude/settings.json` (user or project scope):
 
 ```json
 {
@@ -143,6 +143,9 @@ Add to your project's `.claude/settings.json` or user settings:
       "command": "uv",
       "args": [
         "run",
+        "--with", "mcp",
+        "--with", "requests",
+        "--with", "python-dotenv",
         "/path/to/facebook-mcp-server/server.py"
       ],
       "env": {
